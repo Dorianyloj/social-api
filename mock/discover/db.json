@@ -1,0 +1,373 @@
+{
+  "articles": [
+    {
+      "id": "art-001",
+      "title": "Tech Trends 2025",
+      "image": "https://picsum.photos/seed/tech-trends/960/540",
+      "content": "Découvrez les innovations à suivre en 2025 dans la Silicon Valley : IA générative embarquée, robots compagnons et réseaux quantiques hybrides...",
+      "publishedAt": "2025-10-12T08:30:00Z",
+      "tags": [
+        "tech",
+        "innovation"
+      ],
+      "likes": 1280
+    },
+    {
+      "id": "art-002",
+      "title": "Voyager Durable en Europe",
+      "image": "https://picsum.photos/seed/travel-green/960/540",
+      "content": "Top 10 des destinations européennes à visiter sans exploser votre empreinte carbone. Focus sur le slow tourism et les transports hybrides.",
+      "publishedAt": "2025-09-30T14:05:00Z",
+      "tags": [
+        "voyage",
+        "durable",
+        "lifestyle"
+      ],
+      "likes": 842
+    },
+    {
+      "id": "art-003",
+      "title": "Le Renouveau du Cinéma Français",
+      "image": "https://picsum.photos/seed/cinema-fr/960/540",
+      "content": "Entre plateformes de streaming et salles indépendantes, comment les réalisateurs français réinventent la narration visuelle.",
+      "publishedAt": "2025-09-21T18:42:00Z",
+      "tags": [
+        "culture",
+        "cinema"
+      ],
+      "likes": 655
+    },
+    {
+      "id": "art-004",
+      "title": "Startup Map Monde",
+      "image": "https://picsum.photos/seed/startup-map/960/540",
+      "content": "Les écosystèmes à surveiller : Lagos, Bangalore, Tallinn. Portraits de fondateurs qui changent les règles du jeu.",
+      "publishedAt": "2025-08-28T10:12:00Z",
+      "tags": [
+        "business",
+        "startup",
+        "tech"
+      ],
+      "likes": 932
+    },
+    {
+      "id": "art-005",
+      "title": "Cuisine Fusion à Paris",
+      "image": "https://picsum.photos/seed/food-fusion/960/540",
+      "content": "Les cinq chefs qui mixent saveurs africaines, asiatiques et méditerranéennes dans la capitale.",
+      "publishedAt": "2025-08-20T07:50:00Z",
+      "tags": [
+        "gastronomie",
+        "lifestyle"
+      ],
+      "likes": 489
+    },
+    {
+      "id": "art-006",
+      "title": "Esport: la nouvelle économie",
+      "image": "https://picsum.photos/seed/esport-economy/960/540",
+      "content": "Les ligues européennes passent la barre du milliard. Analyse des revenus médias, merchandising et fan tokens.",
+      "publishedAt": "2025-08-10T12:21:00Z",
+      "tags": [
+        "gaming",
+        "business",
+        "tech"
+      ],
+      "likes": 712
+    },
+    {
+      "id": "art-007",
+      "title": "Bien-être Numérique",
+      "image": "https://picsum.photos/seed/digital-balance/960/540",
+      "content": "Peut-on concilier productivité et santé mentale ? Techniques de detox numérique adoptées par les leaders européens.",
+      "publishedAt": "2025-07-30T06:45:00Z",
+      "tags": [
+        "santé",
+        "lifestyle"
+      ],
+      "likes": 574
+    },
+    {
+      "id": "art-008",
+      "title": "Finance Verte, Fiction ou Réalité ?",
+      "image": "https://picsum.photos/seed/green-finance/960/540",
+      "content": "Décryptage des obligations vertes et des indicateurs ESG utilisés par les banques européennes.",
+      "publishedAt": "2025-07-12T16:00:00Z",
+      "tags": [
+        "finance",
+        "durable"
+      ],
+      "likes": 603
+    },
+    {
+      "id": "art-009",
+      "title": "Sport et IA : une équipe gagnante",
+      "image": "https://picsum.photos/seed/sport-ai/960/540",
+      "content": "Analyse des capteurs biométriques et des algorithmes utilisés par les clubs pros pour éviter les blessures.",
+      "publishedAt": "2025-06-18T11:27:00Z",
+      "tags": [
+        "sport",
+        "tech"
+      ],
+      "likes": 711
+    },
+    {
+      "id": "art-010",
+      "title": "L’Art Urbain s’Augmente",
+      "image": "https://picsum.photos/seed/urban-art/960/540",
+      "content": "Balade à travers les fresques interactives de Marseille avec réalité augmentée.",
+      "publishedAt": "2025-06-01T09:33:00Z",
+      "tags": [
+        "art",
+        "culture",
+        "innovation"
+      ],
+      "likes": 455
+    },
+    {
+      "id": "art-011",
+      "title": "Climat : les villes qui inspirent",
+      "image": "https://picsum.photos/seed/climate-cities/960/540",
+      "content": "Zoom sur cinq métropoles européennes qui atteignent la neutralité carbone grâce à la rénovation énergétique.",
+      "publishedAt": "2025-05-22T07:15:00Z",
+      "tags": [
+        "durable",
+        "urbanisme"
+      ],
+      "likes": 388
+    },
+    {
+      "id": "art-012",
+      "title": "Mode circulaire : guide pratique",
+      "image": "https://picsum.photos/seed/fashion-circular/960/540",
+      "content": "Les marques françaises qui adoptent le recyclage textile et les plateformes de seconde main.",
+      "publishedAt": "2025-05-10T09:52:00Z",
+      "tags": [
+        "mode",
+        "durable",
+        "lifestyle"
+      ],
+      "likes": 521
+    },
+    {
+      "id": "art-013",
+      "title": "L’Europe du spatial privé",
+      "image": "https://picsum.photos/seed/space-eu/960/540",
+      "content": "Reportage aux côtés des startups qui lancent des nanosatellites depuis l’Espagne et la Suède.",
+      "publishedAt": "2025-04-27T16:40:00Z",
+      "tags": [
+        "spatial",
+        "tech",
+        "innovation"
+      ],
+      "likes": 947
+    },
+    {
+      "id": "art-014",
+      "title": "Jazz & Vinyles : renaissance",
+      "image": "https://picsum.photos/seed/jazz-vinyl/960/540",
+      "content": "Portrait de collectionneurs parisiens qui relancent la production artisanale de vinyles jazz.",
+      "publishedAt": "2025-04-12T19:07:00Z",
+      "tags": [
+        "culture",
+        "musique"
+      ],
+      "likes": 267
+    },
+    {
+      "id": "art-015",
+      "title": "Architecture biomimétique",
+      "image": "https://picsum.photos/seed/architecture-bio/960/540",
+      "content": "Toulouse inaugure la première tour inspirée des structures coralliennes pour optimiser la ventilation.",
+      "publishedAt": "2025-03-30T11:18:00Z",
+      "tags": [
+        "architecture",
+        "innovation",
+        "durable"
+      ],
+      "likes": 612
+    },
+    {
+      "id": "art-016",
+      "title": "FoodTech : robot cuisine à domicile",
+      "image": "https://picsum.photos/seed/robot-kitchen/960/540",
+      "content": "Une startup lyonnaise commercialise un robot-cuistot loué par abonnement, avec recettes co-créées par des chefs.",
+      "publishedAt": "2025-03-15T08:05:00Z",
+      "tags": [
+        "foodtech",
+        "startup",
+        "tech"
+      ],
+      "likes": 734
+    },
+    {
+      "id": "art-017",
+      "title": "Gaming indé : les pépites 2025",
+      "image": "https://picsum.photos/seed/gaming-indie/960/540",
+      "content": "Sélection de dix studios indépendants francophones qui cartonnent à l’international.",
+      "publishedAt": "2025-02-27T17:33:00Z",
+      "tags": [
+        "gaming",
+        "culture"
+      ],
+      "likes": 803
+    },
+    {
+      "id": "art-018",
+      "title": "Éducation : classes hybrides",
+      "image": "https://picsum.photos/seed/edu-hybrid/960/540",
+      "content": "Comment les lycées bretons combinent présentiel et métavers pour les cours de sciences.",
+      "publishedAt": "2025-02-10T07:45:00Z",
+      "tags": [
+        "education",
+        "tech"
+      ],
+      "likes": 499
+    },
+    {
+      "id": "art-019",
+      "title": "Photographie : IA & argentique",
+      "image": "https://picsum.photos/seed/photo-ai/960/540",
+      "content": "Dossier sur les photographes qui utilisent l’IA pour restaurer des clichés argentiques rares.",
+      "publishedAt": "2025-01-28T15:20:00Z",
+      "tags": [
+        "art",
+        "tech",
+        "innovation"
+      ],
+      "likes": 345
+    },
+    {
+      "id": "art-020",
+      "title": "Mobilité douce : cargo-bikes en ville",
+      "image": "https://picsum.photos/seed/cargo-bike/960/540",
+      "content": "Les municipalités soutiennent la logistique urbaine à vélo, avec des aides aux artisans.",
+      "publishedAt": "2025-01-12T09:00:00Z",
+      "tags": [
+        "mobilité",
+        "durable",
+        "business"
+      ],
+      "likes": 289
+    }
+  ],
+  "comments": [
+    {
+      "id": "com-1001",
+      "articleId": "art-001",
+      "author": "Lina",
+      "message": "Article super complet, j’attends l’arrivée des robots compagnons !",
+      "createdAt": "2025-10-12T10:05:00Z"
+    },
+    {
+      "id": "com-1002",
+      "articleId": "art-001",
+      "author": "Yanis",
+      "message": "La partie sur les réseaux quantiques est fascinante.",
+      "createdAt": "2025-10-12T11:20:00Z"
+    },
+    {
+      "id": "com-1003",
+      "articleId": "art-002",
+      "author": "Alicia",
+      "message": "Merci pour les conseils transport, ça va sauver mon budget vacances.",
+      "createdAt": "2025-09-30T16:30:00Z"
+    },
+    {
+      "id": "com-1004",
+      "articleId": "art-006",
+      "author": "Nico",
+      "message": "Les fan tokens c’est plutôt toxique non ?",
+      "createdAt": "2025-08-10T13:15:00Z"
+    },
+    {
+      "id": "com-1005",
+      "articleId": "art-010",
+      "author": "Julie",
+      "message": "Hâte de tester ce parcours AR à Marseille !",
+      "createdAt": "2025-06-01T12:41:00Z"
+    },
+    {
+      "id": "com-1006",
+      "articleId": "art-013",
+      "author": "Farid",
+      "message": "On sous-estime le spatial européen, merci pour les insights !",
+      "createdAt": "2025-04-28T09:22:00Z"
+    },
+    {
+      "id": "com-1007",
+      "articleId": "art-015",
+      "author": "Camille",
+      "message": "Le biomimétisme c’est l’avenir, j’espère voir cette tour bientôt.",
+      "createdAt": "2025-03-30T13:48:00Z"
+    },
+    {
+      "id": "com-1008",
+      "articleId": "art-016",
+      "author": "Paul",
+      "message": "Un robot qui fait des quenelles lyonnaises ? Je suis preneur.",
+      "createdAt": "2025-03-15T10:55:00Z"
+    },
+    {
+      "id": "com-1009",
+      "articleId": "art-019",
+      "author": "Sophie",
+      "message": "Je restaure des photos de famille, cette IA m’intéresse !",
+      "createdAt": "2025-01-29T08:18:00Z"
+    },
+    {
+      "id": "com-1010",
+      "articleId": "art-020",
+      "author": "Laurent",
+      "message": "Les cargo-bikes ont changé ma tournée de boulanger.",
+      "createdAt": "2025-01-12T11:45:00Z"
+    },
+    {
+      "id": "com-1011",
+      "articleId": "art-004",
+      "author": "Meriem",
+      "message": "Tallinn est vraiment un hub incroyable pour le SaaS.",
+      "createdAt": "2025-08-29T08:05:00Z"
+    },
+    {
+      "id": "com-1012",
+      "articleId": "art-005",
+      "author": "Hugo",
+      "message": "Je dois tester ce resto fusion asap !",
+      "createdAt": "2025-08-21T09:10:00Z"
+    },
+    {
+      "id": "com-1013",
+      "articleId": "art-011",
+      "author": "Clara",
+      "message": "La rénovation énergétique devrait être obligatoire partout.",
+      "createdAt": "2025-05-22T09:30:00Z"
+    },
+    {
+      "id": "com-1014",
+      "articleId": "art-012",
+      "author": "Lisa",
+      "message": "Merci pour la sélection de marques responsables !",
+      "createdAt": "2025-05-10T12:05:00Z"
+    },
+    {
+      "id": "com-1015",
+      "articleId": "art-017",
+      "author": "Ethan",
+      "message": "Le jeu du studio de Nantes est incroyable, vous auriez pu en parler.",
+      "createdAt": "2025-02-28T07:40:00Z"
+    },
+    {
+      "articleId": "art-001",
+      "author": "API Tester",
+      "message": "Test comment 1762504680888",
+      "id": "ZfY9bhI"
+    },
+    {
+      "articleId": "art-001",
+      "author": "API Tester",
+      "message": "Test comment 1762504785212",
+      "id": "x24WR9x"
+    }
+  ]
+}

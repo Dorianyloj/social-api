@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  api:
+    build: .
+    container_name: social-api
+    environment:
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:-change_me_in_prod}
+    ports:
+      - "3000:3000"
+    depends_on: []
+
+  mock-discover:
+    build: ./mock/discover
+    container_name: mock-discover
+    ports:
+      - "4000:4000"
+
+

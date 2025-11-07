@@ -1,0 +1,29 @@
+{
+  "name": "social-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test:api": "newman run tests/postman/social-api.postman_collection.json -e tests/postman/local.postman_environment.json --reporters cli",
+    "test:api:html": "newman run tests/postman/social-api.postman_collection.json -e tests/postman/local.postman_environment.json --reporters cli,htmlextra --reporter-htmlextra-export tests/postman/report.html",
+    "mock:discover": "json-server --watch mock/discover/db.json --routes mock/discover/routes.json --port 4000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "newman": "^6.2.0",
+    "newman-reporter-htmlextra": "^1.23.0",
+    "json-server": "^0.17.4"
+  }
+}

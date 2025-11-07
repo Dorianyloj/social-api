@@ -1,0 +1,406 @@
+{
+  "info": {
+    "name": "Social API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "register"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"Password123!\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 201', function () { pm.response.to.have.status(201); });",
+              "pm.test('has id and username', function () { const j = pm.response.json(); pm.expect(j.id).to.be.a('string'); pm.expect(j.username).to.eql('testuser'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"Password123!\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 200', function () { pm.response.to.have.status(200); });",
+              "const j = pm.response.json(); pm.environment.set('token', j.token);",
+              "pm.test('token exists', function () { pm.expect(pm.environment.get('token')).to.be.a('string'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/posts", "host": ["{{baseUrl}}"], "path": ["api", "posts"] },
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"Mon titre\",\n  \"content\": \"Hello world\"\n}" }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 201', function () { pm.response.to.have.status(201); });",
+              "const j = pm.response.json(); pm.environment.set('lastPostId', j.id);",
+              "pm.test('has title and content', function () { const j = pm.response.json(); pm.expect(j.title).to.eql('Mon titre'); pm.expect(j.content).to.eql('Hello world'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "List Posts",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/posts?limit=5", "host": ["{{baseUrl}}"], "path": ["api", "posts"], "query": [{"key":"limit","value":"5"}] }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 200', function () { pm.response.to.have.status(200); });",
+              "const j = pm.response.json(); pm.test('items array', function () { pm.expect(j.items).to.be.an('array'); });",
+              "if (pm.response.json().items.length > 0) { pm.environment.set('cursor', pm.response.json().nextCursor || ''); pm.environment.set('firstPostId', pm.response.json().items[0].id); }"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Like Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/posts/{{lastPostId}}/like", "host": ["{{baseUrl}}"], "path": ["api","posts","{{lastPostId}}","like"] }
+      },
+      "event": [
+        { "listen": "test", "script": { "exec": ["pm.test('status 204', function () { pm.response.to.have.status(204); });"], "type": "text/javascript" } }
+      ]
+    },
+    {
+      "name": "Unlike Post",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/posts/{{lastPostId}}/like", "host": ["{{baseUrl}}"], "path": ["api","posts","{{lastPostId}}","like"] }
+      },
+      "event": [
+        { "listen": "test", "script": { "exec": ["pm.test('status 204', function () { pm.response.to.have.status(204); });"], "type": "text/javascript" } }
+      ]
+    },
+    {
+      "name": "Scenario: Seed 30 posts and verify pagination",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{baseUrl}}/health", "host": ["{{baseUrl}}"], "path": ["health"] }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Seed 30 posts with recognizable titles, then validate cursor pagination (limit=10)",
+              "const token = pm.environment.get('token');",
+              "const baseUrl = pm.environment.get('baseUrl') || (pm.collectionVariables && pm.collectionVariables.get('baseUrl')) || '';",
+              "pm.expect(token, 'token should be set').to.be.a('string');",
+              "\n",
+              "function postJson(url, body) {",
+              "  return new Promise((resolve, reject) => {",
+              "    pm.sendRequest({",
+              "      url,",
+              "      method: 'POST',",
+              "      header: {",
+              "        'Content-Type': 'application/json',",
+              "        'Authorization': 'Bearer ' + token",
+              "      },",
+              "      body: { mode: 'raw', raw: JSON.stringify(body) }",
+              "    }, (err, resp) => { if (err) return reject(err); resolve(resp); });",
+              "  });",
+              "}",
+              "\n",
+              "async function seedPosts(n) {",
+              "  for (let i = 0; i < n; i++) {",
+              "    const title = `Seed ${String(i+1).padStart(2,'0')}`;",
+              "    const content = `Seed content ${i+1}`;",
+              "    const r = await postJson(baseUrl + '/api/posts', { title, content });",
+              "    pm.test('seed post ' + (i+1) + ' -> 201', function () { pm.expect(r.code).to.eql(201); });",
+              "  }",
+              "}",
+              "\n",
+              "function getPage(limit, cursor) {",
+              "  const url = baseUrl + '/api/posts?limit=' + limit + (cursor ? ('&cursor=' + encodeURIComponent(cursor)) : '');",
+              "  return new Promise((resolve, reject) => {",
+              "    pm.sendRequest({",
+              "      url,",
+              "      method: 'GET',",
+              "      header: { 'Authorization': 'Bearer ' + token }",
+              "    }, (err, resp) => { if (err) return reject(err); resolve(resp); });",
+              "  });",
+              "}",
+              "\n",
+              "async function collectSeedPosts(totalToCollect) {",
+              "  const limit = 10;",
+              "  let cursor = null;",
+              "  const ids = new Set();",
+              "  let pages = 0;",
+              "  while (ids.size < totalToCollect) {",
+              "    const r = await getPage(limit, cursor);",
+              "    pm.test('list status 200 (page ' + (pages+1) + ')', function () { pm.expect(r.code).to.eql(200); });",
+              "    const j = r.json();",
+              "    pm.expect(j).to.have.property('items');",
+              "    pm.expect(j.items).to.be.an('array');",
+              "    pm.expect(j.items.length).to.be.at.most(limit);",
+              "    // Only take posts we just seeded (title starts with \"Seed \")",
+              "    for (const p of j.items) {",
+              "      if (p.title && typeof p.title === 'string' && p.title.startsWith('Seed ')) {",
+              "        ids.add(p.id);",
+              "      }",
+              "    }",
+              "    cursor = j.nextCursor || null;",
+              "    pages += 1;",
+              "    if (!cursor) break;",
+              "    if (pages > 10) break; // safety",
+              "  }",
+              "  return { idsCount: ids.size, pages };",
+              "}",
+              "\n",
+              "(async () => {",
+              "  await seedPosts(30);",
+              "  const result = await collectSeedPosts(30);",
+              "  pm.test('collected exactly 30 seeded posts without doublons', function () { pm.expect(result.idsCount).to.eql(30); });",
+              "  pm.test('pagination used multiple pages (>=3)', function () { pm.expect(result.pages).to.be.at.least(3); });",
+              "})().catch((e) => {",
+              "  pm.test('scenario failed', function () { throw e; });",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mock Discover API",
+      "item": [
+        {
+          "name": "Discover - List articles page 1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{discoverBaseUrl}}/articles?_page=1&_limit=5",
+              "host": ["{{discoverBaseUrl}}"],
+              "path": ["articles"],
+              "query": [
+                { "key": "_page", "value": "1" },
+                { "key": "_limit", "value": "5" }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status 200', function () { pm.response.to.have.status(200); });",
+                  "const items = pm.response.json();",
+                  "pm.expect(items).to.be.an('array');",
+                  "pm.expect(items.length).to.be.at.most(5);",
+                  "const ids = items.map(i => i.id);",
+                  "pm.environment.set('discoverPage1Ids', JSON.stringify(ids));",
+                  "pm.environment.set('discoverPage1FirstId', ids[0] || '');",
+                  "pm.environment.set('discoverArticleForComments', ids[0] || 'art-001');"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Discover - List articles page 2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{discoverBaseUrl}}/articles?_page=2&_limit=5",
+              "host": ["{{discoverBaseUrl}}"],
+              "path": ["articles"],
+              "query": [
+                { "key": "_page", "value": "2" },
+                { "key": "_limit", "value": "5" }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status 200', function () { pm.response.to.have.status(200); });",
+                  "const items = pm.response.json();",
+                  "pm.expect(items).to.be.an('array');",
+                  "const page1Ids = JSON.parse(pm.environment.get('discoverPage1Ids') || '[]');",
+                  "items.forEach(i => pm.expect(page1Ids, 'no duplicate ids between pages').to.not.include(i.id));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Discover - Filter by tag tech",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{discoverBaseUrl}}/articles?tags_like=tech",
+              "host": ["{{discoverBaseUrl}}"],
+              "path": ["articles"],
+              "query": [
+                { "key": "tags_like", "value": "tech" }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status 200', function () { pm.response.to.have.status(200); });",
+                  "const items = pm.response.json();",
+                  "pm.expect(items).to.be.an('array').and.to.not.be.empty;",
+                  "items.forEach(i => pm.expect(i.tags, 'article contains tech tag').to.include('tech'));",
+                  "pm.environment.set('discoverArticleTechId', items[0] ? items[0].id : 'art-001');"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Discover - List comments for first article",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{discoverBaseUrl}}/articles/{{discoverArticleForComments}}/comments",
+              "host": ["{{discoverBaseUrl}}"],
+              "path": ["articles", "{{discoverArticleForComments}}", "comments"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status 200', function () { pm.response.to.have.status(200); });",
+                  "const items = pm.response.json();",
+                  "pm.expect(items).to.be.an('array');"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Discover - Create comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"articleId\": \"{{discoverArticleForComments}}\",\n  \"author\": \"API Tester\",\n  \"message\": \"{{discoverNewCommentMessage}}\"\n}"
+            },
+            "url": {
+              "raw": "{{discoverBaseUrl}}/comments",
+              "host": ["{{discoverBaseUrl}}"],
+              "path": ["comments"]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const message = `Test comment ${Date.now()}`;",
+                  "pm.environment.set('discoverNewCommentMessage', message);"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status 201', function () { pm.response.to.have.status(201); });",
+                  "const body = pm.response.json();",
+                  "pm.test('message echoed', function () { pm.expect(body.message).to.eql(pm.environment.get('discoverNewCommentMessage')); });",
+                  "pm.environment.set('discoverNewCommentId', body.id || '');"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
+

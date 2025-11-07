@@ -1,0 +1,5 @@
+{
+  "/articles/:articleId/comments": "/comments?articleId=:articleId"
+}
+
+
