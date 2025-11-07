@@ -12,7 +12,7 @@ Démarrage rapide (Docker recommandé)
 ------------------------------------
 ```
 # (optionnel) définir le secret JWT
-export JWT_SECRET="change_me_in_prod"
+export JWT_SECRET="secret_value"
 
 # build & run
 docker compose up --build -d
@@ -131,7 +131,7 @@ Variables d'environnement
 
 Avec Docker Compose, vous pouvez exporter JWT_SECRET avant up:
 ```
-export JWT_SECRET="une_valeur_secrete"
+export JWT_SECRET="secret_value"
 docker compose up -d
 ```
 
@@ -154,6 +154,4 @@ Sécurité & limites (POC)
 - Stockage en mémoire (pas de persistance) — remplaçable par une BDD (ex: SQLite/Prisma)
 - Rate limiting, CORS strict, et validation schéma peuvent être ajoutés si besoin
 
-—
-Si vous souhaitez: génération de JWT dès l'inscription, persistance BDD, CI GitHub (Newman), ou API Gateway, ouvrez une issue/PR.
 
