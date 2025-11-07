@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Env & secrets
+.env
+.env.*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Build outputs / coverage
+dist/
+build/
+coverage/
+.nyc_output/
+
+# Editor/OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Test artifacts
+tests/postman/report.html
+
+# Docker
+.docker/
+*.pid
+
